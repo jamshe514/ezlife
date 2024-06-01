@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class ContactPage extends StatefulWidget {
-  const ContactPage({super.key});
+class Securitycontacts extends StatefulWidget {
+  const Securitycontacts({super.key});
 
   @override
-  State<ContactPage> createState() => _ContactPageState();
+  State<Securitycontacts> createState() => _ContactPageState();
 }
 
-class _ContactPageState extends State<ContactPage> {
+class _ContactPageState extends State<Securitycontacts> {
   List<Map<String, String>> data = [
     {
       "name": "Shiva",
       "num": "9754567898",
-      "room": "D-303",
+      "Location": "main gate",
       "img":
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6iUVzhZCoi1gffBwqglkcayiWsNQDl-Ld3PZIDZGhEqqdljJeo4ocVt8dJGgEnkRIIa4&usqp=CAU"
     },
     {
       "name": "Raman",
       "num": "8646789006",
-      "room": "F-506",
+      "Location": "parking",
       "img":
           "https://wallpapers.com/images/featured/cool-profile-picture-87h46gcobjl5e4xu.jpg"
     },
@@ -29,7 +29,7 @@ class _ContactPageState extends State<ContactPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Center(child: Text("Residents Contacts")),
+          title: Center(child: Text("Security Contacts")),
           backgroundColor: Color.fromARGB(44, 24, 255, 216),
         ),
         body: Container(
@@ -49,7 +49,7 @@ class _ContactPageState extends State<ContactPage> {
                     decoration: InputDecoration(
                         fillColor: Colors.white,
                         filled: true,
-                        hintText: "Flat No",
+                        hintText: "location",
                         prefixIcon: IconButton(
                             onPressed: () {}, icon: const Icon(Icons.search)),
                         border: OutlineInputBorder(
@@ -90,7 +90,7 @@ class _ContactPageState extends State<ContactPage> {
                                         children: [
                                           Text(data[index]['name']!),
                                           Text(data[index]["num"]!),
-                                          Text(data[index]["room"]!)
+                                          Text(data[index]["Location"]!)
                                         ],
                                       ),
                                     ),

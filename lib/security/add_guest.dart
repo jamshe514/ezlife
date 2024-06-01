@@ -23,14 +23,6 @@ class _add_cabState extends State<add_guest> {
         appBar: AppBar(
           title: Center(child: Text(" Add Guest")),
           backgroundColor: Color.fromARGB(44, 24, 255, 216),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => securityhome()),
-                );
-              },
-              icon: Icon(Icons.arrow_back_ios_new)),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -66,9 +58,7 @@ class _add_cabState extends State<add_guest> {
                       },
                     ),
                     TextFormField(
-                      inputFormatters: [
-                                LengthLimitingTextInputFormatter(10)
-                              ],
+                      inputFormatters: [LengthLimitingTextInputFormatter(10)],
                       controller: noofpecontroller,
                       decoration: InputDecoration(
                         labelText: "Phone No",
@@ -98,7 +88,7 @@ class _add_cabState extends State<add_guest> {
                         return null;
                       },
                     ),
-                     TextFormField(
+                    TextFormField(
                       controller: vehiclenocontroller,
                       decoration: InputDecoration(
                         labelText: "no:of pepopels",

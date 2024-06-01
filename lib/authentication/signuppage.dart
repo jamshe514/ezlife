@@ -4,7 +4,12 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:demo_project/authentication/login.dart';
 import 'package:demo_project/bottom.dart';
+import 'package:demo_project/helpers.dart';
+import 'package:demo_project/model/flore_model.dart';
+import 'package:demo_project/provider/helperprovider.dart';
+import 'package:demo_project/security/add_cab.dart';
 import 'package:demo_project/security/home.dart';
+import 'package:demo_project/utils/string.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -13,7 +18,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:random_string/random_string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class signup extends StatefulWidget {
   signup({super.key});
@@ -112,6 +119,8 @@ class _signupState extends State<signup> {
   final conpasswordcontroller = TextEditingController();
   String? _selectedUserType;
   List<String> usertype = ['resident', 'security'];
+
+  final roomflore = {'Flore 1', 'Flore 2', 'Flore 3', 'Flore 4'};
   @override
   Widget build(BuildContext context) {
     Future<void> _pickedimagegallery() async {
@@ -122,6 +131,8 @@ class _signupState extends State<signup> {
         SelectedImage = File(pickedimage.path);
       });
     }
+
+    final provi = Provider.of<HelperProvider>(context, listen: false);
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -249,12 +260,32 @@ class _signupState extends State<signup> {
                                   alignLabelWithHint: true,
                                   prefixIcon: Icon(Icons.email)),
                               validator: _validateemail),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          if (usertype != 'security')
+                            Consumer<HelperProvider>(
+                              builder: (context, helper, child) {
+                                return DropdownButtonFormField(
+                                  hint: Text('select flore'),
+                                  items: roomflore.map((e) {
+                                    return DropdownMenuItem<String>(
+                                      value: e.toString(),
+                                      child: Text(e),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    helper.selectflore(value);
+                                  },
+                                );
+                              },
+                            ),
                           if (_selectedUserType != 'security')
                             TextFormField(
                               keyboardType: TextInputType.name,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
-                              controller: roomnocontrooler,
+                              controller: provi.roomnumbercontroller,
                               decoration: InputDecoration(
                                   labelText: "RoomNo",
                                   alignLabelWithHint: true,
@@ -328,47 +359,65 @@ class _signupState extends State<signup> {
                           Padding(
                             padding: EdgeInsets.only(top: 50),
                             child: SizedBox(
-                              height: 45,
-                              width: 160,
-                              child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: (Color(0xFF27ABC2)),
-                                    foregroundColor: (Colors.black)),
-                                onPressed: () {
-                                  if (_formkey.currentState!.validate()) {
-                                    setState(() {
-                                      email = emailcontroller.text;
-                                      password = passwordcontroller.text;
-                                    });
-                                    if (_selectedUserType == 'security') {
-                                      Registration().then((value) => {
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      securityhome()),
-                                            ),
+                                height: 45,
+                                width: 160,
+                                child: Consumer<HelperProvider>(
+                                  builder: (context, helper, child) {
+                                    return ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: (Color(0xFF27ABC2)),
+                                          foregroundColor: (Colors.black)),
+                                      onPressed: () async {
+                                        if (_formkey.currentState!.validate()) {
+                                          setState(() {
+                                            email = emailcontroller.text;
+                                            password = passwordcontroller.text;
                                           });
-                                      log('this securety function');
-                                    } else {
-                                      log('this resitence');
-                                      Registration().then((value) {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                bottomnavipage(
-                                              indexnum: 0,
-                                            ),
-                                          ),
-                                        );
-                                      });
-                                    }
-                                  }
-                                },
-                                child: Text("sumbit"),
-                              ),
-                            ),
+                                          if (_selectedUserType == 'security') {
+                                            Registration().then((value) => {
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          securityhome(),
+                                                    ),
+                                                  ),
+                                                });
+                                          } else {
+                                            await helper
+                                                .checkflore(
+                                                    roomnocontrooler.text)
+                                                .then((value) {
+                                              helper
+                                                  .addFlore(
+                                                Floremodel(
+                                                    floreno:
+                                                        roomnocontrooler.text,
+                                                    Flore: helper.selelctedroom
+                                                        .toString(),
+                                                    id: '1'),
+                                              )
+                                                  .then((value) {
+                                                Registration().then((value) {
+                                                  Navigator.pushReplacement(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          bottomnavipage(
+                                                        indexnum: 0,
+                                                      ),
+                                                    ),
+                                                  );
+                                                });
+                                              });
+                                            });
+                                          }
+                                        }
+                                      },
+                                      child: Text("sumbit"),
+                                    );
+                                  },
+                                )),
                           ),
                         ],
                       ),

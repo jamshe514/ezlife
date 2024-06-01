@@ -1,3 +1,6 @@
+import 'package:demo_project/security/add_cab.dart';
+import 'package:demo_project/security/add_delivery.dart';
+import 'package:demo_project/security/add_guest.dart';
 import 'package:demo_project/security/home.dart';
 import 'package:flutter/material.dart';
 
@@ -15,12 +18,11 @@ class _more_addState extends State<more_add> {
         appBar: AppBar(
           title: Center(child: Text("more")),
           backgroundColor: Color.fromARGB(44, 24, 255, 216),
-          leading: IconButton(
-              onPressed: () {}, icon: Icon(Icons.arrow_back_ios_new)),
         ),
         body: SingleChildScrollView(
           child: Container(
               width: double.infinity,
+              height: 900,
               padding: EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -31,10 +33,8 @@ class _more_addState extends State<more_add> {
               child: Column(children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => securityhome()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => add_guest()));
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -67,7 +67,7 @@ class _more_addState extends State<more_add> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => securityhome()));
+                              builder: (context) => adddevivery()));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -100,10 +100,8 @@ class _more_addState extends State<more_add> {
                   Column(children: [
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => securityhome()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => add_cab()));
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -127,6 +125,36 @@ class _more_addState extends State<more_add> {
                     SizedBox(
                       height: 25,
                     ),
+                    // InkWell(
+                    //   child: Container(
+                    //     decoration: BoxDecoration(
+                    //         border: Border.all(),
+                    //         color: Colors.white,
+                    //         borderRadius: BorderRadius.circular(10)),
+                    //     height: 60,
+                    //     width: 350,
+                    //     child: Padding(
+                    //       padding: const EdgeInsets.only(left: 10),
+                    //       child: Row(children: [
+                    //         Icon(Icons.pedal_bike),
+                    //         SizedBox(
+                    //           width: 10,
+                    //         ),
+                    //         Padding(
+                    //           padding:
+                    //               const EdgeInsets.only(right: 180, top: 6),
+                    //           child: Text(
+                    //             "Delivery",
+                    //             style: TextStyle(fontSize: 20),
+                    //           ),
+                    //         ),
+                    //       ]),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   height: 25,
+                    // ),
                     InkWell(
                       child: Container(
                         decoration: BoxDecoration(
@@ -146,7 +174,7 @@ class _more_addState extends State<more_add> {
                               padding:
                                   const EdgeInsets.only(right: 180, top: 6),
                               child: Text(
-                                "Delivery",
+                                "Mainteance",
                                 style: TextStyle(fontSize: 20),
                               ),
                             ),
@@ -176,7 +204,7 @@ class _more_addState extends State<more_add> {
                               padding:
                                   const EdgeInsets.only(right: 180, top: 6),
                               child: Text(
-                                "Delivery",
+                                "Repairing",
                                 style: TextStyle(fontSize: 20),
                               ),
                             ),
@@ -206,7 +234,7 @@ class _more_addState extends State<more_add> {
                               padding:
                                   const EdgeInsets.only(right: 180, top: 6),
                               child: Text(
-                                "Delivery",
+                                "Other",
                                 style: TextStyle(fontSize: 20),
                               ),
                             ),
@@ -217,63 +245,33 @@ class _more_addState extends State<more_add> {
                     SizedBox(
                       height: 25,
                     ),
-                    InkWell(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 60,
-                        width: 350,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Row(children: [
-                            Icon(Icons.pedal_bike),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 180, top: 6),
-                              child: Text(
-                                "Delivery",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ),
-                          ]),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    InkWell(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        height: 60,
-                        width: 350,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Row(children: [
-                            Icon(Icons.pedal_bike),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 180, top: 6),
-                              child: Text(
-                                "Delivery",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ),
-                          ]),
-                        ),
-                      ),
-                    ),
+                    // InkWell(
+                    //   child: Container(
+                    //     decoration: BoxDecoration(
+                    //         border: Border.all(),
+                    //         color: Colors.white,
+                    //         borderRadius: BorderRadius.circular(10)),
+                    //     height: 60,
+                    //     width: 350,
+                    //     child: Padding(
+                    //       padding: const EdgeInsets.only(left: 10),
+                    //       child: Row(children: [
+                    //         Icon(Icons.pedal_bike),
+                    //         SizedBox(
+                    //           width: 10,
+                    //         ),
+                    //         Padding(
+                    //           padding:
+                    //               const EdgeInsets.only(right: 180, top: 6),
+                    //           child: Text(
+                    //             "Delivery",
+                    //             style: TextStyle(fontSize: 20),
+                    //           ),
+                    //         ),
+                    //       ]),
+                    //     ),
+                    //   ),
+                    // ),
                   ]),
                 ])
               ])),

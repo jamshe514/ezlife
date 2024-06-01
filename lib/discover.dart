@@ -1,4 +1,5 @@
 import 'package:demo_project/bookingpage.dart';
+import 'package:demo_project/feedback.dart';
 import 'package:demo_project/home_user.dart';
 import 'package:flutter/material.dart';
 
@@ -205,6 +206,13 @@ class _discoverState extends State<discover> {
                   height: 15,
                 ),
                 InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => feedback(),
+                        ));
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         image: DecorationImage(

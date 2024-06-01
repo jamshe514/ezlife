@@ -14,8 +14,6 @@ class _feedbackState extends State<feedback> {
         appBar: AppBar(
           title: Center(child: Text("feedback")),
           backgroundColor: Color.fromARGB(44, 24, 255, 216),
-          leading: IconButton(
-              onPressed: () {}, icon: Icon(Icons.arrow_back_ios_new)),
         ),
         body: Container(
           width: double.infinity,
@@ -32,16 +30,24 @@ class _feedbackState extends State<feedback> {
                 "Feedback:",
                 style: TextStyle(fontSize: 20),
               ),
+              SizedBox(
+                height: 20,
+              ),
               TextField(
+                maxLines: 6,
                 decoration: InputDecoration(
                   filled: true,
+
                   // labelText: "Name",
-                  hintText: " compailnt type",
+                  hintText: "Type a feedback",
                   // prefixIcon: Icon(Icons.person),
                   fillColor: Color(0xFFF3EEEE),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15)),
                 ),
+              ),
+              SizedBox(
+                height: 30,
               ),
               SizedBox(
                 width: 100,

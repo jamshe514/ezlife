@@ -32,6 +32,10 @@ class _VisiterHistoryState extends State<VisiterHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Center(child: Text("Residents Contacts")),
+        backgroundColor: Color.fromARGB(44, 24, 255, 216),
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -40,24 +44,9 @@ class _VisiterHistoryState extends State<VisiterHistory> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 30.0, left: 10, right: 10),
+          padding: const EdgeInsets.only(top: 7.0, left: 10, right: 10),
           child: Column(
             children: [
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_circle_left_outlined,
-                        size: 30,
-                        color: Colors.black,
-                      )),
-                  // Icon(Icons.arrow_circle_left_outlined, color: Colors.black, size: 30),
-                  SizedBox(width: 10),
-                  Text("Gate Pass History ",
-                      style: TextStyle(color: Colors.black, fontSize: 20)),
-                ],
-              ),
               SizedBox(height: 20),
               TextFormField(
                 controller: _dateController,

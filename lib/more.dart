@@ -1,3 +1,4 @@
+import 'package:demo_project/feedback.dart';
 import 'package:demo_project/home_user.dart';
 import 'package:demo_project/myhomepage.dart';
 import 'package:flutter/material.dart';
@@ -201,7 +202,7 @@ class _moreState extends State<more> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => MyHome()),
+                      MaterialPageRoute(builder: (context) => feedback()),
                     );
                   },
                   child: Container(

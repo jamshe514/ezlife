@@ -45,18 +45,6 @@ class _visitorsState extends State<visitors_view> {
           appBar: AppBar(
             title: Center(child: Text("view visitores")),
             backgroundColor: Color.fromARGB(44, 24, 255, 216),
-            leading: IconButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => bottomnavipage(
-                        indexnum: 0,
-                      ),
-                    ),
-                  );
-                },
-                icon: Icon(Icons.arrow_back_ios_new)),
             bottom: TabBar(
               tabs: [
                 Tab(text: "Inside"),

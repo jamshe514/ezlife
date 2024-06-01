@@ -19,6 +19,7 @@ import 'package:demo_project/home_user.dart';
 import 'package:demo_project/authentication/login.dart';
 import 'package:demo_project/authentication/signuppage.dart';
 import 'package:demo_project/notification_home.dart';
+import 'package:demo_project/provider/helperprovider.dart';
 import 'package:demo_project/security/add_cab.dart';
 import 'package:demo_project/security/contacts.dart';
 import 'package:demo_project/security/history_gatepass.dart';
@@ -28,10 +29,12 @@ import 'package:demo_project/security/notifications.dart';
 import 'package:demo_project/security/securitysignup.dart';
 import 'package:demo_project/security/signuppage.dart';
 import 'package:demo_project/security/view_visiters.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,13 +51,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter ',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home:loginPage());
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => HelperProvider(),
+        )
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter ',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: loginPage()),
+    );
   }
 }

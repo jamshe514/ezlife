@@ -17,7 +17,6 @@ class profile_edit extends StatefulWidget {
   State<profile_edit> createState() => _profile_editState();
 }
 
-String? url;
 File? SelectedImage;
 
 class _profile_editState extends State<profile_edit> {
@@ -146,6 +145,11 @@ class _profile_editState extends State<profile_edit> {
           child: StreamBuilder(
               stream: firestore.collection('Register').doc(id).snapshots(),
               builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
                 DocumentSnapshot data = snapshot.data!;
 
                 String username = data['username'];

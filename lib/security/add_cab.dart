@@ -23,14 +23,6 @@ class _add_cabState extends State<add_cab> {
         appBar: AppBar(
           title: Center(child: Text(" Add Cab")),
           backgroundColor: Color.fromARGB(44, 24, 255, 216),
-          leading: IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => securityhome()),
-                );
-              },
-              icon: Icon(Icons.arrow_back_ios_new)),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -66,9 +58,7 @@ class _add_cabState extends State<add_cab> {
                       },
                     ),
                     TextFormField(
-                      inputFormatters: [
-                                LengthLimitingTextInputFormatter(10)
-                              ],
+                      inputFormatters: [LengthLimitingTextInputFormatter(10)],
                       controller: phonecontroller,
                       decoration: InputDecoration(
                         labelText: "Phone No",
